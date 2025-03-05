@@ -220,7 +220,21 @@
           "visible": true,
           "type": "json",
           "tooltip": "Specify multiple key/value pairs in JSON format to filter incidents retrieved from FortiAppSec Cloud.",
-          "name": "filter"
+          "name": "filter",
+          "value": [
+            {
+              "id": "app_name",
+              "logic": {
+                "is": {
+                  "enum": true
+                },
+                "search": "string"
+              },
+              "value": [
+                "app_name"
+              ]
+            }
+          ]
         },
         {
           "title": "Page Size",
@@ -1147,7 +1161,7 @@
       "operation": "execute_an_api_call",
       "title": "Execute an API Request",
       "annotation": "execute_an_api_call",
-      "description": "Sends an API request to any Fortinet FortiAppSec Cloud API endpoint based on specified HTTP method, endpoint, and other input parameters that you have specified, enabling flexible API interactions tailored to user needs. ",
+      "description": "Sends an API request to any Fortinet FortiAppSec Cloud API endpoint based on specified HTTP method, endpoint, and other input parameters that you have specified, enabling flexible API interactions tailored to user needs.",
       "category": "investigation",
       "visible": true,
       "enabled": true,

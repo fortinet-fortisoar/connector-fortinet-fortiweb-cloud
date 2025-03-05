@@ -8,7 +8,7 @@
       "visible": true,
       "image": null,
       "uuid": "5794f2b9-1cd3-490e-a4b3-75902abafb8b",
-      "id": 130,
+      "id": 52,
       "deletedAt": null,
       "importedBy": [],
       "recordTags": [
@@ -42,7 +42,6 @@
                 "name": "Fortinet FortiAppSec Cloud",
                 "config": "95e7e297-3264-4720-bbb5-68299b6a5544",
                 "params": {
-                  "forward": "",
                   "size": "",
                   "cursor": "",
                   "filter": [
@@ -58,7 +57,8 @@
                         "AWS"
                       ]
                     }
-                  ]
+                  ],
+                  "forward": ""
                 },
                 "version": "2.0.0",
                 "connector": "fortinet-fortiweb-cloud",
@@ -124,8 +124,103 @@
           ],
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "0dc14e3b-d5bd-4334-8fdf-6cc7931e79ea",
-          "id": 1630,
+          "id": 727,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortiappsec-cloud"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Update Geo IP Block List",
+          "aliasName": null,
+          "tag": null,
+          "description": "Block requests from client by geography by updating the Geo IP Block list based on the Application ID, Countries, and other input paramters you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1726720819,
+          "collection": "/api/3/workflow_collections/5794f2b9-1cd3-490e-a4b3-75902abafb8b",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/0e3ec2b0-098f-4020-9e2d-967ff36145a6",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "__triggerLimit": true,
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                },
+                "triggerOnSource": true,
+                "triggerOnReplicate": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "120",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+              "group": null,
+              "uuid": "0e3ec2b0-098f-4020-9e2d-967ff36145a6"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Update Geo IP Block List",
+              "description": null,
+              "arguments": {
+                "name": "Fortinet FortiAppSec Cloud",
+                "config": "0664efff-4597-4b59-a0a4-b996aa4a1a9a",
+                "params": {
+                  "epid": "8242004135",
+                  "block_country_list": "",
+                  "operation_to_perform": "Add Countries To Block List"
+                },
+                "version": "2.0.0",
+                "connector": "fortinet-fortiweb-cloud",
+                "operation": "update_geo_ip_block_list",
+                "operationTitle": "Update Geo IP Block List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "180",
+              "left": "460",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "3442007c-f8c6-4fcf-a7b2-75a07c5772d1"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Update Geo IP Block List",
+              "targetStep": "/api/3/workflow_steps/3442007c-f8c6-4fcf-a7b2-75a07c5772d1",
+              "sourceStep": "/api/3/workflow_steps/0e3ec2b0-098f-4020-9e2d-967ff36145a6",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "08debec2-3b87-4762-ae4d-2137cb913eb0"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
+          "uuid": "137a363c-4139-47c1-af0c-f9ca7a3ac136",
+          "id": 738,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -148,7 +243,7 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1721119264,
+          "lastModifyDate": 1741165318,
           "collection": "/api/3/workflow_collections/5794f2b9-1cd3-490e-a4b3-75902abafb8b",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/2916f652-5ffd-4868-b822-eb29e0d93989",
@@ -163,7 +258,7 @@
                 "params": {
                   "page": "",
                   "size": "",
-                  "filter": "[\n  {\n    \"id\": \"risk\",\n    \"logic\": {\n      \"is\": {\n        \"string\": true\n      },\n      \"search\": \"string\"\n    },\n    \"value\": [\n      \"Low\"\n    ]\n  }\n]",
+                  "filter": "[\n  {\n    \"id\": \"app_name\",\n    \"logic\": {\n      \"is\": {\n        \"enum\": true\n      },\n      \"search\": \"string\"\n    },\n    \"value\": [\n      \"Default config demo\"\n    ]\n  }\n]",
                   "time_range": "7d"
                 },
                 "version": "2.0.0",
@@ -174,7 +269,7 @@
               },
               "status": null,
               "top": "120",
-              "left": "188",
+              "left": "180",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
               "uuid": "8fe7ec8c-af44-4712-944f-5fb674bd5c43"
@@ -212,8 +307,10 @@
           ],
           "groups": [],
           "priority": null,
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "17a50056-c7a7-48a7-bb0d-f14f7c5948c6",
-          "id": 1631,
+          "id": 728,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -296,8 +393,10 @@
           ],
           "groups": [],
           "priority": null,
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "21fcd5f6-50d5-4e4f-b600-aef3354d545c",
-          "id": 1632,
+          "id": 729,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -380,8 +479,10 @@
           ],
           "groups": [],
           "priority": null,
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "26c13244-f5fe-458a-a994-4b2679462ec8",
-          "id": 1633,
+          "id": 730,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -462,8 +563,10 @@
           ],
           "groups": [],
           "priority": null,
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "385aec69-7175-41df-9f30-cf36efe7a43b",
-          "id": 1634,
+          "id": 731,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -565,8 +668,10 @@
           ],
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "41f11feb-24c8-45cf-bab8-be5fa188f8da",
-          "id": 1635,
+          "id": 732,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -671,8 +776,10 @@
           ],
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "9d330a7e-d64d-4459-9cb3-7a76c542e551",
-          "id": 1636,
+          "id": 733,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -756,8 +863,118 @@
           ],
           "groups": [],
           "priority": null,
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "b2356f52-596b-4d19-b438-c65d86cb7c45",
-          "id": 1637,
+          "id": 734,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortiappsec-cloud"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Execute an API Request",
+          "aliasName": null,
+          "tag": null,
+          "description": "Sends an API request to any Fortinet FortiAppSec Cloud API endpoint based on specified HTTP method, endpoint, and other input parameters that you have specified, enabling flexible API interactions tailored to user needs.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1741155377,
+          "collection": "/api/3/workflow_collections/5794f2b9-1cd3-490e-a4b3-75902abafb8b",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/8d404f45-dd85-4d65-8f80-a1683322a414",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Execute an API Request",
+              "description": null,
+              "arguments": {
+                "name": "Fortinet FortiAppSec Cloud",
+                "config": "bd49bbb5-e255-47e3-8af8-f666247342be",
+                "params": {
+                  "method": "GET",
+                  "payload": "",
+                  "endpoint": "/ta/insight/summary",
+                  "query_params": ""
+                },
+                "version": "2.0.0",
+                "connector": "fortinet-fortiweb-cloud",
+                "operation": "execute_an_api_call",
+                "operationTitle": "Execute an API Request",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "49639ca9-02e2-4033-81d6-bcbb67e50d3b"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "a785e4af-8e55-4f7c-8d09-1254542ca102",
+                "title": "Fortinet FortiAppSec Cloud: Execute an API Request",
+                "resources": [
+                  "alerts"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "8d404f45-dd85-4d65-8f80-a1683322a414"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Execute an API Request",
+              "targetStep": "/api/3/workflow_steps/49639ca9-02e2-4033-81d6-bcbb67e50d3b",
+              "sourceStep": "/api/3/workflow_steps/8d404f45-dd85-4d65-8f80-a1683322a414",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "655b26a5-7e0b-4d08-9598-84a65b91ce03"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
+          "uuid": "c3828a26-f1d4-4985-809a-fff2f31f0b94",
+          "id": 739,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -844,8 +1061,10 @@
           ],
           "groups": [],
           "priority": null,
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "eebe7739-795b-436a-b6c7-eb222e76bc30",
-          "id": 1638,
+          "id": 735,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -949,8 +1168,10 @@
           ],
           "groups": [],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "f283b614-d2b3-4401-a0c6-6b0d4086298a",
-          "id": 1639,
+          "id": 736,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
@@ -1036,99 +1257,10 @@
           ],
           "groups": [],
           "priority": null,
+          "playbookOrigin": "/api/3/picklists/15c1e8c9-22bf-4e66-8fbb-0a502d4a4a3f",
+          "isEditable": true,
           "uuid": "f2b6d496-9d94-468c-904a-d96626f0fe8c",
-          "id": 1640,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "Fortinet",
-            "fortinet-fortiappsec-cloud"
-          ]
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Update Geo IP Block List",
-          "aliasName": null,
-          "tag": null,
-          "description": "Block requests from client by geography by updating the Geo IP Block list based on the Application ID, Countries, and other input paramters you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1726720819,
-          "collection": "/api/3/workflow_collections/5794f2b9-1cd3-490e-a4b3-75902abafb8b",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/0e3ec2b0-098f-4020-9e2d-967ff36145a6",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "__triggerLimit": true,
-                "step_variables": {
-                  "input": {
-                    "params": []
-                  }
-                },
-                "triggerOnSource": true,
-                "triggerOnReplicate": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "120",
-              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-              "group": null,
-              "uuid": "0e3ec2b0-098f-4020-9e2d-967ff36145a6"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Update Geo IP Block List",
-              "description": null,
-              "arguments": {
-                "name": "Fortinet FortiAppSec Cloud",
-                "config": "0664efff-4597-4b59-a0a4-b996aa4a1a9a",
-                "params": {
-                  "epid": "8242004135",
-                  "block_country_list": "",
-                  "operation_to_perform": "Add Countries To Block List"
-                },
-                "version": "2.0.0",
-                "connector": "fortinet-fortiweb-cloud",
-                "operation": "update_geo_ip_block_list",
-                "operationTitle": "Update Geo IP Block List",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "180",
-              "left": "460",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "3442007c-f8c6-4fcf-a7b2-75a07c5772d1"
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Update Geo IP Block List",
-              "targetStep": "/api/3/workflow_steps/3442007c-f8c6-4fcf-a7b2-75a07c5772d1",
-              "sourceStep": "/api/3/workflow_steps/0e3ec2b0-098f-4020-9e2d-967ff36145a6",
-              "label": null,
-              "isExecuted": false,
-              "group": null,
-              "uuid": "08debec2-3b87-4762-ae4d-2137cb913eb0"
-            }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "137a363c-4139-47c1-af0c-f9ca7a3ac136",
-          "id": 1076,
+          "id": 737,
           "owners": [],
           "isPrivate": false,
           "deletedAt": null,
