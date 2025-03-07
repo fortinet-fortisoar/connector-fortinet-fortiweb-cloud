@@ -7,7 +7,7 @@
   "contributor": "",
   "cs_approved": true,
   "cs_compatible": true,
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.0/fortinet-fortiappsec-cloud/1035/fortinet-fortiappsec-cloud-v2-0-0",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
   "category": "Cloud Security",
@@ -802,12 +802,12 @@
         },
         {
           "title": "Forward",
-          "description": "Select this option to fetch records from the next page. Clear this checkbox to fetch records from the previous page.",
+          "description": "(Optional) Select this option to fetch records from the next page. Clear this checkbox to fetch records from the previous page.",
           "required": false,
           "editable": true,
           "visible": true,
           "type": "checkbox",
-          "tooltip": "Select this option to fetch records from the next page. Clear this checkbox to fetch records from the previous page.",
+          "tooltip": "(Optional) Select this option to fetch records from the next page. Clear this checkbox to fetch records from the previous page.",
           "name": "forward"
         }
       ],
@@ -1186,7 +1186,7 @@
           "title": "Endpoint",
           "name": "endpoint",
           "tooltip": "Specify the target API URL path for example: /ta/insight/summary",
-          "description": "Specify the target API URL path for the request. For example, if the website is https://example.com and URL path is https://example.com/ta/insight/summary, the endpoint would be /ta/insight/summary. ",
+          "description": "Specify the target API URL path for the request. For example, if the website is https://example.com and URL path is https://example.com/api/v2/incidents/search, the endpoint would be /api/v2/incidents/search.",
           "type": "text",
           "visible": true,
           "editable": true,
@@ -1195,7 +1195,8 @@
         {
           "title": "Query Parameters",
           "name": "query_params",
-          "description": "(Optional) Specify any optional parameters to add to the URL and refine the request. ",
+          "description": "(Optional) Specify any optional parameters to add to the URL and refine the request.",
+          "tooltip": "(Optional) Specify any optional parameters to add to the URL and refine the request.",
           "type": "json",
           "visible": true,
           "editable": true,
@@ -1208,7 +1209,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "description": "(Optional) Specify data, as JSON, to be sent as the request payload (typically for POST or PUT requests). "
+          "description": "(Optional) Specify data, as JSON, to be sent as the request payload (typically for POST or PUT requests).",
+          "tooltip": "(Optional) Specify data, as JSON, to be sent as the request payload (typically for POST or PUT requests)."
         }
       ],
       "output_schema": {}
