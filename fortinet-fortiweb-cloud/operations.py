@@ -265,7 +265,7 @@ def execute_an_api_call(config, params):
         query_params = params.get("query_params") if params.get("query_params") else None
         payload = json.dumps(params.get("payload")) if params.get("payload") else None
         logger.debug("Payload: {0}".format(payload))
-        response = fw.make_rest_call(endpoint, http_method, params=query_params, data=json.dumps(payload))
+        response = fw.make_rest_call(endpoint, http_method, params=query_params, data=payload)
         logger.debug("Response: {0}".format(response))
         return response
     except Exception as err:
